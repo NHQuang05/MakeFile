@@ -60,7 +60,7 @@ build: $(OUTPUT_PATH)/startup_stm32f40xx.o $(OBJ_FILES) $(LINKER_FILE)
 	@echo "---LOG: BUILD elf, hex"
 	$(LD) $(LD_OPT) $(PATH_OBJS) -o $(OUTPUT_PATH)/$(PROJ_NAME).elf
 	$(COMPILER_DIRS)/arm-none-eabi/bin/objcopy.exe -O ihex "$(OUTPUT_PATH)/$(PROJ_NAME).elf" "$(OUTPUT_PATH)/$(PROJ_NAME).hex"
-	
+	size $(OUTPUT_PATH)/$(PROJ_NAME).elf
 %.o: %.c $(INC_FILES)
 	@echo "---LOG: .c => .o file"
 	#$(CC) $(CC_OPT) $(SRC_DIR)/main.c -o $(OUTPUT_PATH)/main.o
