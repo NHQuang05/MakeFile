@@ -3,7 +3,7 @@
 void delay(void)
 {
 	int i = 0;
-	for (i = 0; i < 5000000; i++);
+	for (i = 0; i < 500000; i++);
 }
 void GPIO_Config(void)
 {
@@ -16,8 +16,21 @@ void GPIO_Config(void)
 }
 void Blynk_All(void)
 {
+	GPIOD->ODR |= 0x00001000;
+	delay();
+	GPIOD->ODR |= 0x00003000;
+	delay();
+	GPIOD->ODR |= 0x00007000;
+	delay();
 	GPIOD->ODR |= 0x0000F000;
 	delay();
+	for(int i = 0; i < 3; i++)
+	{
+		GPIOD->ODR &= ~(0x0000F000);
+		delay();
+		GPIOD->ODR |= 0x0000F000;
+		delay();
+	}
 	GPIOD->ODR &= ~(0x0000F000);
 	delay();
 }
