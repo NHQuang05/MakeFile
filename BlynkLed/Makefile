@@ -66,6 +66,10 @@ build: $(OUTPUT_PATH)/startup_stm32f40xx.o $(OBJ_FILES) $(LINKER_FILE)
 	#$(CC) $(CC_OPT) $(SRC_DIR)/main.c -o $(OUTPUT_PATH)/main.o
 	$(CC) $(CC_OPT) -c $< -o $(OUTPUT_PATH)/main.o
 
+.PHONY: run
+run:
+	$(PROJ_DIR)/ST_Link_Utility/ST-LINK_CLI.exe -p "$(OUTPUT_PATH)/$(PROJ_NAME).hex" 0x08000000
+	$(PROJ_DIR)/ST_Link_Utility/ST-LINK_CLI.exe -rst
 	
 .PHONY: clean
 clean:
